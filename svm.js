@@ -18,12 +18,12 @@ async function svm(avgWeather) {
     [-1, -1], // -2 -=> 0
     [-1, 0], // -1 -=> 0
     [-1, 1], // 0 -=> 1
-    [0, -1], // -1 -=> 0
+    [0, -1], // -1 -=> 1
     [0, 0], // 0 -=> 1
     [0, 1], // 1 -=> 1
   ];
 
-  const labels = [-1, -1, 0, -1, 0, 0, 0, 0, 1, 0, 1, 1]; // aturan label ke feature hasil2 yg akan di outputkan
+  const labels = [-1, -1, 0, -1, 0, 0, 0, 0, 1, 1, 1, 1]; // aturan label ke feature hasil2 yg akan di outputkan
 
   svm.train(features, labels); // train the model
   return svm;

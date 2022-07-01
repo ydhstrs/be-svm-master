@@ -16,7 +16,7 @@ const getWeather = async () => {
     let point;
     switch (e.weather[0].id) {
       case 200:
-        point = -1;
+        point = 0;
         break;
       case 201:
         point = -2;
@@ -45,7 +45,7 @@ const getWeather = async () => {
       //thundrrstrom
 
       case 300:
-        point = -1;
+        point = 0;
         break;
       case 301:
         point = -1;
@@ -71,7 +71,7 @@ const getWeather = async () => {
       //drizzle
 
       case 500:
-        point = -1;
+        point = 0;
         break;
       case 501:
         point = -1;
@@ -110,8 +110,8 @@ const getWeather = async () => {
   });
   return array;
 };
-
-let svmResult;
+var startTime = performance.now();
+let svmResult, svmResulta;
 getWeather().then((weather) => {
   const avgWeather =
     weather.slice(weather.length - 4).reduce((a, b) => a + b) / 3;
@@ -122,15 +122,16 @@ getWeather().then((weather) => {
       [avgWeather, 0],
       [avgWeather, 1],
     ]);
+    // if (svmResult.indexOf(3) == -1) {
+    //   svmResulta = "Banjir + 40 CM";
+    // } else if (svmResult.indexOf(3) == 0) {
+    //   svmResulta = "Banjir Drainase";
+    // } else if (svmResult.indexOf(3) == 1) {
+    //   svmResulta = "Aman";
+    // }
   });
 });
-// if ((svmResult = -4)) {
-//   svmResult = "Banjir + 40 CM";
-// } else if ((svmResult = -3)) {
-//   svmResult = "Banjir + 40 CM";
-// } else {
-//   svmResult = "Aman";
-// }
+
 app.get("/", async (req, res) => {
   res.json({
     data: {
@@ -144,3 +145,5 @@ app.get("/", async (req, res) => {
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
+var endTime = performance.now();
+console.log(`SVM took ${endTime - startTime} milliseconds`);
